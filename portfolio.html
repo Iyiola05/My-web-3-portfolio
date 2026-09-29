@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POLE — Web3 Builder · Trader · Brand Architect</title>
+<meta name="description" content="Pole — full-stack Web3 developer (6+ yrs). Wallet-connected dApps & sites (Phantom, MetaMask, Solflare + more), crypto & forex trading, community command, and custom project merch shipped worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a0c; --ink2:#101014; --panel:#141419; --line:#26262f;
+  --txt:#ecece8; --muted:#8f8f9c; --faint:#5a5a66;
+  --gold:#c9a24b; --gold2:#e7c877; --emer:#3fbf8f;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --disp:'Oswald',sans-serif; --sans:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--ink);color:var(--txt);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.disp{font-family:var(--disp)}
+.gold{color:var(--gold2)}
+
+/* film-grain / vignette overlay */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;
+  background:radial-gradient(120% 90% at 50% 0%,transparent 55%,rgba(0,0,0,.55) 100%);}
+
+/* chapter label */
+.chapter{font-family:var(--disp);font-weight:500;letter-spacing:.42em;text-transform:uppercase;
+  font-size:.72rem;color:var(--gold);display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.chapter::before{content:"";width:46px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+section{padding:120px 0;position:relative}
+.sec-title{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.02em;
+  font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.02;margin-bottom:22px}
+.lead-serif{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.5rem);color:var(--muted);
+  max-width:640px;line-height:1.5;font-style:italic}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* NAV */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:.4s}
+header.on{background:rgba(10,10,12,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{font-family:var(--disp);font-weight:700;font-size:1.15rem;letter-spacing:.28em;text-transform:uppercase}
+.logo b{color:var(--gold2);font-weight:700}
+.menu{display:flex;gap:34px;align-items:center}
+.menu a{font-family:var(--disp);font-weight:400;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.8rem;color:var(--muted);transition:.25s;position:relative}
+.menu a:hover{color:var(--txt)}
+.cta{border:1px solid var(--gold);color:var(--gold2);padding:11px 22px;letter-spacing:.16em;
+  font-family:var(--disp);text-transform:uppercase;font-size:.78rem;transition:.3s}
+.cta:hover{background:var(--gold);color:#0a0a0c}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.burger span{width:26px;height:2px;background:var(--txt);transition:.3s}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 90px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.hero-bg .glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.22}
+.g-gold{width:520px;height:520px;background:var(--gold);top:-160px;right:-120px}
+.g-emer{width:460px;height:460px;background:var(--emer);bottom:-200px;left:-160px;opacity:.14}
+.grid-lines{position:absolute;inset:0;z-index:-1;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;opacity:.28;-webkit-mask-image:radial-gradient(120% 80% at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(120% 80% at 50% 30%,#000 20%,transparent 75%)}
+.hero-inner{max-width:900px}
+.eyebrow{font-family:var(--disp);letter-spacing:.4em;text-transform:uppercase;font-size:.78rem;color:var(--gold);margin-bottom:28px}
+.hero h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-height:.96;
+  font-size:clamp(2.9rem,9vw,6.6rem);letter-spacing:-.01em;margin-bottom:8px}
+.hero h1 .line2{color:transparent;-webkit-text-stroke:1.4px var(--gold2);text-stroke:1.4px var(--gold2)}
+.hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.4vw,1.7rem);
+  color:var(--muted);margin:26px 0 40px;max-width:660px;line-height:1.45}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--disp);text-transform:uppercase;letter-spacing:.16em;font-size:.82rem;
+  padding:15px 30px;transition:.3s;cursor:pointer;border:1px solid transparent}
+.btn-gold{background:var(--gold);color:#0a0a0c;font-weight:600}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-out{border-color:var(--line);color:var(--txt)}
+.btn-out:hover{border-color:var(--gold);color:var(--gold2)}
+.quote{margin-top:56px;padding-left:22px;border-left:2px solid var(--gold);max-width:520px}
+.quote p{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--txt)}
+.quote span{font-family:var(--disp);letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;color:var(--faint);display:block;margin-top:8px}
+
+/* MARQUEE */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;white-space:nowrap;background:var(--ink2)}
+.marquee .track{display:inline-block;animation:scroll 26s linear infinite}
+.marquee span{font-family:var(--disp);text-transform:uppercase;letter-spacing:.22em;font-size:1.05rem;color:var(--faint);margin:0 34px}
+.marquee span b{color:var(--gold2);font-weight:500}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);margin-top:0}
+.stat{padding:42px 30px;border-right:1px solid var(--line);position:relative}
+.stat:last-child{border-right:none}
+.stat h3{font-family:var(--disp);font-weight:700;font-size:3rem;line-height:1;color:var(--gold2)}
+.stat p{font-family:var(--disp);text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;color:var(--muted);margin-top:10px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.creed{list-style:none;margin-top:30px;display:grid;gap:0;border-top:1px solid var(--line)}
+.creed li{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.creed .no{font-family:var(--disp);color:var(--gold2);font-weight:600;font-size:1.05rem;letter-spacing:.1em;min-width:34px}
+.creed b{font-family:var(--disp);text-transform:uppercase;letter-spacing:.06em;font-size:1rem;display:block;margin-bottom:2px}
+.creed p{color:var(--muted);font-size:.95rem;line-height:1.55}
+
+/* CRAFT cards */
+.craft-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.craft{background:var(--ink);padding:44px 34px;transition:.4s;position:relative}
+.craft:hover{background:var(--panel)}
+.craft .rn{font-family:var(--disp);font-size:.8rem;letter-spacing:.28em;color:var(--gold);margin-bottom:26px}
+.craft h3{font-family:var(--disp);text-transform:uppercase;font-size:1.35rem;letter-spacing:.02em;margin-bottom:14px}
+.craft p{color:var(--muted);font-size:.95rem;margin-bottom:20px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags i{font-style:normal;font-family:var(--disp);letter-spacing:.08em;text-transform:uppercase;font-size:.68rem;color:var(--faint);border:1px solid var(--line);padding:5px 12px;border-radius:2px}
+
+/* STACK / WALLETS */
+#stack{background:var(--ink2)}
+.wallet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.wal{background:var(--ink2);padding:30px 20px;text-align:center;transition:.35s}
+.wal:hover{background:var(--panel)}
+.wal .em{font-size:1.9rem;display:block;margin-bottom:12px}
+.wal b{font-family:var(--disp);text-transform:uppercase;letter-spacing:.06em;font-size:.95rem;display:block}
+.wal small{font-family:var(--disp);letter-spacing:.16em;text-transform:uppercase;font-size:.66rem;color:var(--faint)}
+
+/* COMMAND */
+#command{position:relative}
+.cmd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+.cmd{border:1px solid var(--line);padding:40px 32px;transition:.35s;background:var(--ink)}
+.cmd:hover{border-color:var(--gold);transform:translateY(-6px)}
+.cmd .rn{font-family:var(--disp);color:var(--gold);letter-spacing:.28em;font-size:.78rem;margin-bottom:22px}
+.cmd h3{font-family:var(--disp);text-transform:uppercase;font-size:1.25rem;margin-bottom:12px}
+.cmd p{color:var(--muted);font-size:.94rem}
+
+/* FORGE / MERCH */
+#forge{background:var(--ink2)}
+.forge-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.merch{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.merch .m{background:var(--ink2);padding:34px 26px;transition:.35s}
+.merch .m:hover{background:var(--panel)}
+.merch .em{font-size:1.8rem;margin-bottom:14px}
+.merch h4{font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em;font-size:1.05rem;margin-bottom:6px}
+.merch p{color:var(--muted);font-size:.88rem}
+
+/* CONTACT */
+#contact{padding:140px 0}
+.enlist{border:1px solid var(--line);padding:70px 50px;text-align:center;position:relative;overflow:hidden;background:var(--ink2)}
+.enlist::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--gold);filter:blur(140px);opacity:.14}
+.enlist .chapter{justify-content:center}
+.enlist .chapter::before{display:none}
+.links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+.lk{display:inline-flex;align-items:center;gap:12px;font-family:var(--disp);text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;
+  border:1px solid var(--line);padding:15px 26px;transition:.3s;background:var(--ink)}
+.lk:hover{border-color:var(--gold);color:var(--gold2);transform:translateY(-3px)}
+footer{border-top:1px solid var(--line);padding:40px 0;text-align:center}
+footer .fl{font-family:var(--disp);letter-spacing:.24em;text-transform:uppercase;font-size:.72rem;color:var(--faint)}
+footer .fl b{color:var(--gold2);font-weight:500}
+
+@media(max-width:900px){
+  .split,.forge-grid{grid-template-columns:1fr;gap:44px}
+  .craft-grid,.cmd-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-bottom:1px solid var(--line)}
+  .stat:nth-child(2){border-right:none}
+  .menu{position:fixed;top:76px;right:0;left:0;background:rgba(10,10,12,.97);backdrop-filter:blur(16px);
+    flex-direction:column;padding:30px;gap:24px;border-bottom:1px solid var(--line);transform:translateY(-160%);transition:.4s;text-align:center}
+  .menu.open{transform:translateY(0)}
+  .burger{display:flex}
+  section{padding:84px 0}
+}
+</style>
+</head>
+<body>
+<header id="hdr">
+  <div class="wrap">
+    <nav>
+      <div class="logo">POLE<b>.</b></div>
+      <div class="menu" id="menu">
+        <a href="#story">Story</a>
+        <a href="#craft">Craft</a>
+        <a href="#stack">Wallets</a>
+        <a href="#command">Command</a>
+        <a href="#forge">Forge</a>
+        <a href="#contact" class="cta">Enlist</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="hero-bg"><div class="glow g-gold"></div><div class="glow g-emer"></div></div>
+  <div class="grid-lines"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="eyebrow rv">Web3 Builder · Trader · Brand Architect</div>
+      <h1 class="rv">I FIND A WAY<br><span class="line2">OR MAKE ONE.</span></h1>
+      <p class="sub rv">I'm Pole — six years deep in code, markets and culture. I build wallet-connected dApps, trade crypto & forex, command communities, and dress projects in merch that ships across the world.</p>
+      <div class="hero-cta rv">
+        <a href="#contact" class="btn btn-gold">Start The Campaign</a>
+        <a href="#craft" class="btn btn-out">See The Craft</a>
+      </div>
+      <div class="quote rv">
+        <p>“Ship the code. Read the market. Rally the army. Brand the legend.”</p>
+        <span>— The Operating Doctrine</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="track">
+    <span>Web3 Development</span><span>◈</span><span>Wallet <b>Integration</b></span><span>◈</span><span>Crypto Trading</span><span>◈</span><span>Forex <b>Markets</b></span><span>◈</span><span>Community Command</span><span>◈</span><span>Custom <b>Merch</b></span><span>◈</span><span>Web3 Development</span><span>◈</span><span>Wallet <b>Integration</b></span><span>◈</span><span>Crypto Trading</span><span>◈</span><span>Forex <b>Markets</b></span><span>◈</span><span>Community Command</span><span>◈</span><span>Custom <b>Merch</b></span><span>◈</span>
+  </div>
+</div>
+
+<!-- I · STORY -->
+<section id="story">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="chapter rv">I · The Story</div>
+        <h2 class="sec-title rv">One operator.<br>Four <span class="gold">disciplines.</span></h2>
+        <p class="lead-serif rv">I live where code meets markets meets culture. The same discipline that ships a flawless mint page reads a forex chart at dawn and threads a logo into a fresh cap by nightfall.</p>
+      </div>
+      <div class="rv">
+        <ul class="creed">
+          <li><span class="no">01</span><div><b>Web3 Developer · 6+ Years</b><p>dApps, wallet integrations and responsive sites engineered to load fast, convert hard, and never break on chain.</p></div></li>
+          <li><span class="no">02</span><div><b>Crypto & Forex Trader</b><p>Active in both markets — tokenomics, liquidity, and market psychology are part of the daily work, not theory.</p></div></li>
+          <li><span class="no">03</span><div><b>Community Commander</b><p>Moderator, shill & raid coordinator, contest host — I turn a quiet channel into a marching army.</p></div></li>
+          <li><span class="no">04</span><div><b>Brand & Merch Architect</b><p>Embroidered caps, apparel and full drops for your project — designed, produced, and shipped overseas.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="wrap">
+  <div class="stats rv">
+    <div class="stat"><h3 data-n="6">0</h3><p>Years Building</p></div>
+    <div class="stat"><h3 data-n="8">0</h3><p>Wallets Wired</p></div>
+    <div class="stat"><h3 data-n="50">0</h3><p>Projects & Communities</p></div>
+    <div class="stat"><h3 data-inf="1">∞</h3><p>Countries Shipped</p></div>
+  </div>
+</div>
+
+<!-- II · CRAFT -->
+<section id="craft">
+  <div class="wrap">
+    <div class="chapter rv">II · The Craft</div>
+    <h2 class="sec-title rv">What I bring to the field.</h2>
+    <p class="lead-serif rv" style="margin-bottom:52px">From the first line of code to the last shipped hoodie — one full-stack skillset, built for the Web3 era.</p>
+    <div class="craft-grid rv">
+      <div class="craft"><div class="rn">Ⅰ</div><h3>Web3 Development</h3><p>Wallet-connected websites & dApps — fast, secure, and beautiful on every device.</p><div class="tags"><i>React</i><i>Next.js</i><i>Solana Web3.js</i><i>Ethers</i></div></div>
+      <div class="craft"><div class="rn">Ⅱ</div><h3>Wallet Integration</h3><p>Seamless multi-wallet connect flows — users log in, mint and transact in two clicks.</p><div class="tags"><i>Phantom</i><i>MetaMask</i><i>Solflare</i><i>+more</i></div></div>
+      <div class="craft"><div class="rn">Ⅲ</div><h3>Crypto & Forex</h3><p>Active trader across both markets — technical analysis, risk control, real market instinct.</p><div class="tags"><i>Crypto</i><i>Forex</i><i>TA</i><i>Risk</i></div></div>
+      <div class="craft"><div class="rn">Ⅳ</div><h3>Community Command</h3><p>Moderation, shill & raid coordination, hype engineering that keeps the army loud and safe.</p><div class="tags"><i>Discord</i><i>Telegram</i><i>X</i></div></div>
+      <div class="craft"><div class="rn">Ⅴ</div><h3>Contests & Growth</h3><p>Raids, giveaways, meme wars & quests — designed to convert lurkers into loyal holders.</p><div class="tags"><i>Giveaways</i><i>Raids</i><i>Quests</i></div></div>
+      <div class="craft"><div class="rn">Ⅵ</div><h3>Brand & Merch</h3><p>Custom embroidery of your name/logo on caps, apparel & attire — shipped anywhere.</p><div class="tags"><i>Embroidery</i><i>Apparel</i><i>Worldwide</i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- III · STACK / WALLETS -->
+<section id="stack">
+  <div class="wrap">
+    <div class="chapter rv">III · The Arsenal</div>
+    <h2 class="sec-title rv">Every wallet. One clean gate.</h2>
+    <p class="lead-serif rv" style="margin-bottom:52px">One connect button, every major wallet supported — Solana, EVM and beyond.</p>
+    <div class="wallet-grid rv">
+      <div class="wal"><span class="em">👻</span><b>Phantom</b><small>Solana</small></div>
+      <div class="wal"><span class="em">🦊</span><b>MetaMask</b><small>EVM</small></div>
+      <div class="wal"><span class="em">☀️</span><b>Solflare</b><small>Solana</small></div>
+      <div class="wal"><span class="em">🎒</span><b>Backpack</b><small>Solana</small></div>
+      <div class="wal"><span class="em">🔵</span><b>Coinbase</b><small>EVM · SOL</small></div>
+      <div class="wal"><span class="em">🌈</span><b>WalletConnect</b><small>Multi-chain</small></div>
+      <div class="wal"><span class="em">🔐</span><b>Trust</b><small>Multi-chain</small></div>
+      <div class="wal"><span class="em">🌿</span><b>Glow</b><small>Solana</small></div>
+      <div class="wal"><span class="em">💼</span><b>Ledger</b><small>Hardware</small></div>
+      <div class="wal"><span class="em">➕</span><b>& more</b><small>On request</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- IV · COMMAND -->
+<section id="command">
+  <div class="wrap">
+    <div class="chapter rv">IV · The Command Center</div>
+    <h2 class="sec-title rv">I don't just build it — <span class="gold">I make it march.</span></h2>
+    <p class="lead-serif rv" style="margin-bottom:52px">A great project needs a great army. As mod, raid & shill coordinator and contest host, I keep the energy relentless and the engagement real.</p>
+    <div class="cmd-grid rv">
+      <div class="cmd"><div class="rn">Ⅰ</div><h3>Moderation</h3><p>Safe, clean, welcoming channels — scam defense, rules enforced, presence around the clock.</p></div>
+      <div class="cmd"><div class="rn">Ⅱ</div><h3>Shill & Raid Squads</h3><p>Coordinated raids and organic shilling that amplify your reach across X, Telegram and Discord.</p></div>
+      <div class="cmd"><div class="rn">Ⅲ</div><h3>Contests & Rewards</h3><p>Meme wars, quests, giveaways and leaderboards designed to turn lurkers into diamond hands.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- V · FORGE / MERCH -->
+<section id="forge">
+  <div class="wrap">
+    <div class="forge-grid">
+      <div>
+        <div class="chapter rv">V · The Forge</div>
+        <h2 class="sec-title rv">Wear the project.<br><span class="gold">Ship the legend.</span></h2>
+        <p class="lead-serif rv" style="margin-bottom:28px">I design and produce custom branded attire for Web3 projects — embroidered caps, hoodies, tees and full drops. Turn every holder into a walking billboard. Distance is never a problem: I ship overseas.</p>
+        <a href="#contact" class="btn btn-gold rv">Commission A Drop</a>
+      </div>
+      <div class="merch rv">
+        <div class="m"><div class="em">🧢</div><h4>Caps</h4><p>Name & logo embroidered clean.</p></div>
+        <div class="m"><div class="em">👕</div><h4>Apparel</h4><p>Tees, hoodies & full drops.</p></div>
+        <div class="m"><div class="em">✈️</div><h4>Worldwide</h4><p>Shipped to holders anywhere.</p></div>
+        <div class="m"><div class="em">✨</div><h4>Custom</h4><p>Any design you imagine.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VI · ENLIST -->
+<section id="contact">
+  <div class="wrap">
+    <div class="enlist rv">
+      <div class="chapter">VI · Enlist</div>
+      <h2 class="sec-title">Got a project? Let's march.</h2>
+      <p class="lead-serif" style="margin:0 auto">Website, wallet integration, community command, or a custom merch drop — pick a channel and let's plan the campaign.</p>
+      <div class="links">
+        <a class="lk" href="https://x.com/Pole1134083" target="_blank" rel="noopener">𝕏 @Pole1134083</a>
+        <a class="lk" href="https://t.me/Polebckup" target="_blank" rel="noopener">✈ Telegram @Polebckup</a>
+        <a class="lk" href="mailto:p10810703@gmail.com">✉ p10810703@gmail.com</a>
+        <a class="lk" href="https://github.com/" target="_blank" rel="noopener">⬡ GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><div class="fl">POLE · <b>Web3 Builder · Trader · Brand Architect</b> · © <span id="yr"></span></div></div>
+</footer>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',function(){hdr.classList.toggle('on',window.scrollY>20);});
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){menu.classList.toggle('open');});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');}});
+  var yr=document.getElementById('yr'); if(yr){yr.textContent=new Date().getFullYear();}
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.14});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  // count-up stats
+  function countUp(el){
+    var target=parseInt(el.getAttribute('data-n'),10),cur=0,step=Math.max(1,Math.ceil(target/48));
+    var t=setInterval(function(){cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=cur+'+';},22);
+  }
+  var so=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){if(en.target.hasAttribute('data-n')){countUp(en.target);}so.unobserve(en.target);}});},{threshold:.6});
+  document.querySelectorAll('.stat h3[data-n]').forEach(function(el){so.observe(el);});
+})();
+</script>
+</body>
+</html>
